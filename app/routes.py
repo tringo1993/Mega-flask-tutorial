@@ -1,7 +1,11 @@
+from flask import render_template, flash, redirect
 from app import app
+from app.forms import LoginForm
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
 
-def index():
-    return 'Hello, World!!!'
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/login')
+    return render_template('login.html', title='Sign in', form=form)
