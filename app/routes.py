@@ -109,3 +109,10 @@ def reset_password(token):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('reset_password.html', form = form)
+
+@app.route('/')
+def sum(arg):
+    total = 0
+    for val in arg:
+        total += val
+    return total
